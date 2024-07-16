@@ -1,0 +1,1 @@
+s3_static_bucket_name = "www.my-demo-test-museum-site1997.com"
