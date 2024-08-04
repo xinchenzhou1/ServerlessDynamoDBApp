@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head>
+    <title>Demo Website - Museum Rating</title>
+
+    <!-- Javascript Code  -->
+    <script src="index.js"></script>
+    <script src="config.js"></script>
+
+    <!-- Custom Styles  -->
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <!-- Cognito Dependencies -->
+    <script src="dist/jsbn.js"></script>
+    <script src="dist/jsbn2.js"></script>
+    <script src="dist/sjcl.js"></script>
+    <script src="dist/aws-cognito-sdk.js"></script>
+    <script src="dist/amazon-cognito-identity.min.js"></script>
+    <script src="dist/amazon-cognito-identity.min.js.map" type="application/json"></script>
+
+    <!-- UI Framework Dependencies -->
+    <link rel="stylesheet" href="dist/semantic.min.css" />
+    <script src="dist/jquery-3.1.1.min.js"></script>
+    <script src="dist/semantic.min.js"></script>
+
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Header  -->
+    <div class="ui fixed inverted menu">
+        <div class="ui container">
+            <a href="#" class="header item">
+                <img class="logo" src="assets/images/record-logo.png"> &nbsp; Museum Rating
+            </a>
+            <div class="right menu">
+                <div id="menu-button" class="item"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main List Container  -->
+    <div id="main-container" class="ui main text container">
+
+        <h1 class="ui header">Museum Collection</h1>
+        <p>Create, Read, Update, or Delete a Museum Collection</p>
+
+        <div class="ui menu">
+            <div class="header item">
+                <div class="ui primary floated right labeled icon button" onclick="onAddAlbumClick()">
+                    Add Museum
+                    <i class="plus icon"></i>
+                </div>
+            </div>
+
+            <div class="header algin right item">
+                <div class="ui icon input">
+                    <input id="search" type="text" placeholder="Search by MuseumType">
+                    <i class="inverted circular search link icon" onclick="onSearchClick()"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Museum Container -->
+        <div id="museum-container" class="ui segment"></div>
+
+        <!-- Music Modal -->
+        <div id="museum-modal" class="ui modal"></div>
+
+    </div>
+
+</body>
+
+<script>
+    $(document).ready(function() {
+        document.getElementById("search").value = "";
+        $(".rating").rating();
+        renderMenuButton();
+        renderPlaceHolders();
+        readMuseumRating();
+    })
+</script>
+
+</html>

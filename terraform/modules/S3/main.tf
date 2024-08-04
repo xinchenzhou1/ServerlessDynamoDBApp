@@ -32,16 +32,6 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
   )
 }
 
-# # uploads all the files present under ../../../src/content folder to the S3 bucket
-# resource "aws_s3_object" "upload_object"{
-#     for_each = fileset("../src/content/", "**/*")
-#     bucket = aws_s3_bucket.bucket.id
-#     key = each.value
-#     source = "../src/content/${each.value}"
-#     etag = filemd5("../src/content/${each.value}")
-#     content_type  = lookup(local.content_types, regex("\\.[^.]+$", each.value), null)
-# }
-
 # enable static website hosting
 resource "aws_s3_bucket_website_configuration" "hosting" {
   bucket = aws_s3_bucket.bucket.id

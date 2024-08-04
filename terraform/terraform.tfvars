@@ -1,1 +1,7 @@
 s3_static_bucket_name = "www.my-demo-test-museum-site1997.com"
+db_name = "my-demo-test-museum-db"
+put_lambda_function_name = "updateMuseum"
+post_lambda_function_name = "addMuseum"
+delete_lambda_function_name = "deleteMuseum"
+get_lambda_function_name= "getMuseum"
+iam_policy_name = "dynamodb-lambda-access-policy"
