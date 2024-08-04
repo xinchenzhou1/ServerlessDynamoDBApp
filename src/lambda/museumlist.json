@@ -56,6 +56,30 @@
     "City": "Paris"
   },
   {
+    "CollectionHighlight": "Venus de Milo",
+    "MuseumName": "Louvre Museum",
+    "MuseumType": "Art",
+    "Rating": "6",
+    "Country": "France",
+    "City": "Paris"
+  },
+  {
+    "CollectionHighlight": "Red Baron",
+    "MuseumName": "Lone Star Flight Museum",
+    "MuseumType": "Aerospace",
+    "Rating": "8",
+    "Country": "USA",
+    "City": "Houston"
+  },
+  {
+    "CollectionHighlight": "Winged Victory of Samothrace",
+    "MuseumName": "Louvre Museum",
+    "MuseumType": "Art",
+    "Rating": "5",
+    "Country": "France",
+    "City": "Paris"
+  },
+  {
     "CollectionHighlight": "The Origin of the World",
     "MuseumName": "Musée d'Orsay",
     "MuseumType": "Art",

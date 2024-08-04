@@ -17,10 +17,7 @@ def lambda_handler(event,context):
             Key={
                 'CollectionHighlight': event["CollectionHighlight"],
                 'MuseumName': event["MuseumName"]
-            },
-            ConditionExpression = "attribute_not_exists(#R) OR (#R > :min)",   # specifying the condition for deleting the item, with placeholders for actual names and values
-            ExpressionAttributeNames = { '#R' : "Rating" },                      # providing the actual attribute name here, since rank is a reserved word in DynamoDB
-            ExpressionAttributeValues={ ':min': 10 }                          # providing the numerical value here, since entering the number in the ConditionExpression would be read as a string
+            }
         )
         return delstatus
     except ClientError as error:

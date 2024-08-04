@@ -19,7 +19,8 @@ resource "aws_api_gateway_method" "getMuseumMethod" {
   rest_api_id   = aws_api_gateway_rest_api.museumAPI.id
   resource_id   = aws_api_gateway_resource.museumResource.id
   http_method   = "GET"
-  authorization = "NONE"
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.MuseumAppAuthorizer.id
 }
 
 resource "aws_api_gateway_integration" "get_lambda_integration" {
@@ -79,7 +80,8 @@ resource "aws_api_gateway_method" "deleteMuseumMethod" {
   rest_api_id   = aws_api_gateway_rest_api.museumAPI.id
   resource_id   = aws_api_gateway_resource.museumResource.id
   http_method   = "DELETE"
-  authorization = "NONE"
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.MuseumAppAuthorizer.id
 }
 
 resource "aws_api_gateway_integration" "delete_lambda_integration" {
@@ -130,7 +132,8 @@ resource "aws_api_gateway_method" "postMuseumMethod" {
   rest_api_id   = aws_api_gateway_rest_api.museumAPI.id
   resource_id   = aws_api_gateway_resource.museumResource.id
   http_method   = "POST"
-  authorization = "NONE"
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.MuseumAppAuthorizer.id
 }
 
 resource "aws_api_gateway_integration" "post_lambda_integration" {
@@ -181,7 +184,8 @@ resource "aws_api_gateway_method" "putMuseumMethod" {
   rest_api_id   = aws_api_gateway_rest_api.museumAPI.id
   resource_id   = aws_api_gateway_resource.museumResource.id
   http_method   = "PUT"
-  authorization = "NONE"
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.MuseumAppAuthorizer.id
 }
 
 resource "aws_api_gateway_integration" "put_lambda_integration" {
@@ -327,9 +331,28 @@ resource "aws_api_gateway_deployment" "deployment" {
     aws_api_gateway_integration.delete_lambda_integration,
     aws_api_gateway_integration.post_lambda_integration,
     aws_api_gateway_integration.put_lambda_integration,
-    aws_api_gateway_integration.options_integration, # Add this line
+    aws_api_gateway_integration.options_integration, 
+    aws_api_gateway_integration_response.get_lambda_integration_response,
+    aws_api_gateway_integration_response.delete_lambda_integration_response,
+    aws_api_gateway_integration_response.options_integration_response,
+    aws_api_gateway_integration_response.post_lambda_integration_response,
+    aws_api_gateway_integration_response.put_lambda_integration_response
   ]
 
   rest_api_id = aws_api_gateway_rest_api.museumAPI.id
-  stage_name = "dev"
+}
+
+resource "aws_api_gateway_stage" "example" {
+  deployment_id = aws_api_gateway_deployment.deployment.id
+  rest_api_id   = aws_api_gateway_rest_api.museumAPI.id
+  stage_name    = "dev"
+}
+
+// Add Cognito Authorizer
+
+resource "aws_api_gateway_authorizer" "MuseumAppAuthorizer" {
+  name = "museumAppAuthorizer"
+  rest_api_id = aws_api_gateway_rest_api.museumAPI.id
+  type = "COGNITO_USER_POOLS"
+  provider_arns = [var.cognito_pool.arn]
 }

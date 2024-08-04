@@ -27,6 +27,7 @@ module "api_gateway"{
     delete_lambda_function = module.lambda_func.delete_lambda_function_output
     post_lambda_function = module.lambda_func.post_lambda_function_output
     put_lambda_function = module.lambda_func.put_lambda_function_output
+    cognito_pool = module.cognito.cognito_user_pool_output
 }
 module "lambda_func"{
     source = "./modules/lambda"
@@ -36,4 +37,9 @@ module "lambda_func"{
     get_lambda_function_name= var.get_lambda_function_name
     target_dynamodb_table = var.db_name
     lambda_role_arn = module.iam_policy_role.lambda-role.arn
+}
+module "cognito"{
+    source = "./modules/cognito"
+    username = var.test_username
+    password = var.test_password
 }

@@ -41,3 +41,15 @@ variable iam_policy_name{
     description = "name of the iam policy for lambda functions"
     default = ""
 }
+
+variable test_username{
+    type = string
+    description = "name of the cognito user name for testing"
+    default = "testuser"
+}
+
+variable test_password{
+    type = string
+    description = "name of the cognito user password for testing"
+    default = "testuser"
+}

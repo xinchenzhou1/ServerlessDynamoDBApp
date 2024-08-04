@@ -5,3 +5,11 @@ output "api_gateway_endpoint"{
 output "s3_url"{
     value = module.static_content_s3.s3_web_hosting_output.website_endpoint
 }
+
+output "cognito_user_pool_id"{
+    value = module.cognito.cognito_user_pool_output.id
+}
+
+output "cognito_user_pool_client_id"{
+    value = module.cognito.cognito_user_pool_client_output.id
+}
