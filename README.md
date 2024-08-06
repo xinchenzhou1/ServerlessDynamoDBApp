@@ -41,7 +41,7 @@ Authenticated users can click the "**Delete**" button to delete an existing muse
    ![image](https://github.com/user-attachments/assets/463eb40e-19db-4fb8-a333-cf28c5292302)
    * Update the **config.js** file under **ServerlessDynamoDBApp/src/frontend** for API endpoint and Cognito User Pool configuration:
    ![image](https://github.com/user-attachments/assets/47024fe2-7546-49f2-95d0-9a4aa5d7881b)
-   * ```cd ServerlessDynamoDBApp/src/frontend``` and run the following cli command to update the frontend to the specified S3 bucket:
+   * ```cd ServerlessDynamoDBApp/src/frontend``` and run the following aws cli command to upload the frontend to the specified S3 bucket:
      ```
      aws s3 sync $(pwd) s3://{s3_url_from_console_output}
      ```
