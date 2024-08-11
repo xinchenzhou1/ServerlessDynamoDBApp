@@ -1,8 +1,8 @@
 // Updating API Gateway Stage URL
-var ApiGatewayStageUrl = 'https://9eyogqtnec.execute-api.ca-central-1.amazonaws.com/dev';
+var ApiGatewayStageUrl = 'https://4urwm9bj89.execute-api.us-east-1.amazonaws.com/test';
 
 // Updating Cognito User Pool Configuration
 var poolData = {
-    UserPoolId: 'ca-central-1_1LAK2zCQT',
-    ClientId: 'aia58ocnb098hl6t789ai1fp7'
+    UserPoolId: 'us-east-1_ojJQrJ0pR',
+    ClientId: '346hmugp029l5grtdfeomh0m79'
 };

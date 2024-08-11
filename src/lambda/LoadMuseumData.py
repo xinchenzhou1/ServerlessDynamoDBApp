@@ -8,8 +8,8 @@ from decimal import Decimal
 def load_dataset(dataset, targettable):
 
     region=boto3.session.Session().region_name
-    print(region)
-    dynamodb = boto3.resource('dynamodb', region_name="ca-central-1") # low-level client
+
+    dynamodb = boto3.resource('dynamodb', region_name=region) # low-level client
     table = dynamodb.Table(targettable)
 
     for dataitem in dataset:           # loop over each item in the dataset

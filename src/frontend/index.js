@@ -25,7 +25,7 @@ async function consumeAPIGateway(callback, method, path, body) {
 
 // Read all museum rating or by country
 function readMuseumRating(queryParam) {
-    path = queryParam ? `/museums?Country=${queryParam}` : '/museums';
+    path = queryParam ? `/museums?MuseumType=${queryParam}` : '/museums';
     consumeAPIGateway(renderMuseumList, "GET", path);
 }
 
