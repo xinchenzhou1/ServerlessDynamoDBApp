@@ -33,7 +33,7 @@ Authenticated users can click the "**Delete**" button to delete an existing muse
 1. Install [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 2. Have an AWS IAM user account with sufficient permissions to create the necessary resources shown in the architecture diagram
 3. Configure AWS IAM credentials using environment variables [AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
-4. Fill up the sensitive variable values in terraform.tfvars file
+4. Fill up the sensitive variable values in terraform.tfvars file: s3_static_bucket_name, test_username, test_password
 5. Run ```terraform init``` to initialize
 6. Run ```terraform plan``` to inspect infrastructure
 7. Run ```terraform apply``` to create infrastructure
@@ -43,21 +43,20 @@ Authenticated users can click the "**Delete**" button to delete an existing muse
    ![image](https://github.com/user-attachments/assets/47024fe2-7546-49f2-95d0-9a4aa5d7881b)
    * ```cd ServerlessDynamoDBApp/src/frontend``` and run the following aws cli command to upload the frontend to the specified S3 bucket:
      ```
-     aws s3 sync $(pwd) s3://{s3_url_from_console_output}
+     aws s3 sync $(pwd) s3://{s3_bucket_name}
      ```
-9. Currently, unfortunately I have to manually enable Cross-Origin Resource Sharing (CORS) in the AWS Console under API Gateway, will try to learn to configure it automatucally with Terraform as part of the future work:
+<!-- 9. Currently, unfortunately I have to manually enable Cross-Origin Resource Sharing (CORS) in the AWS Console under API Gateway, will try to learn to configure it automatucally with Terraform as part of the future work:
     * Click "**Enable CORS**" button
     ![image](https://github.com/user-attachments/assets/5f73f972-b21c-4178-974d-45a8ec2f0366)
     * Select the following options and click Save
     ![image](https://github.com/user-attachments/assets/ca3f42b0-25b5-4a17-8bc6-bc2a5f13e63a)
     * Click "**Deploy API**" to update and redeploy the APIs:
-    ![image](https://github.com/user-attachments/assets/63d0ce9f-b0d1-4c3e-b46c-2ffd8a078dec)
-11. Optionally, you can load the provided sample museumlist.json data into DynamoDB table by running the LoadMuseumData.py script:
+    ![image](https://github.com/user-attachments/assets/63d0ce9f-b0d1-4c3e-b46c-2ffd8a078dec) -->
+9. Optionally, you can load the provided sample museumlist.json data into DynamoDB table by running the LoadMuseumData.py script:
     ```
     python LoadMuseumData.py my-demo-test-museum-db museumlist.json
     ```
-12. Run ```terraform destroy``` to clean up
+10. Run ```terraform destroy``` to clean up
 ## Future Work
-1. Configure cross-origin resource sharing (CORS) correctly with Terraform.
-2. Use an Amazon CloudFront distribution to serve a static website with HTTPS for better security practice.
-3. Use Cloudwatch for API Request/Response meta data store. 
+1. Use CloudFront distribution (CDN) to serve a static website with HTTPS for better security practice, and configure Amazon Route 53 to route traffic to the CloudFront distribution.
+2. Use Cloudwatch for API Request/Response meta data store. 
