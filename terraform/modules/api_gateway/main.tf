@@ -238,7 +238,6 @@ resource "aws_api_gateway_method" "options" {
   http_method = "OPTIONS"
   #   authorization = "NONE"
   authorization = "NONE"
-
 }
 
 resource "aws_api_gateway_integration" "options_integration" {
@@ -326,13 +325,6 @@ resource "aws_lambda_permission" "lambda_put_permission" {
 
 // deployment
 resource "aws_api_gateway_deployment" "deployment" {
-  # depends_on = [
-  #   aws_api_gateway_integration_response.delete_lambda_integration_response,
-  #   aws_api_gateway_integration_response.get_lambda_integration_response,
-  #   aws_api_gateway_integration_response.post_lambda_integration_response,
-  #   aws_api_gateway_integration_response.put_lambda_integration_response,
-  #   aws_api_gateway_integration_response.options_integration_response
-  # ]
   triggers = {
     # NOTE: The configuration below will satisfy ordering considerations,
     #       but not pick up all future REST API changes. More advanced patterns
@@ -361,17 +353,15 @@ resource "aws_api_gateway_deployment" "deployment" {
   }
 
   rest_api_id = aws_api_gateway_rest_api.museumAPI.id
-  # stage_name = "test"
 }
 
 resource "aws_api_gateway_stage" "example" {
   deployment_id = aws_api_gateway_deployment.deployment.id
   rest_api_id   = aws_api_gateway_rest_api.museumAPI.id
-  stage_name    = "test"
+  stage_name    = var.api_gateway_stage_name
 }
 
-// Add Cognito Authorizer
-
+// Add Cognito Authorizer for api gateway access control
 resource "aws_api_gateway_authorizer" "MuseumAppAuthorizer" {
   name = "museumAppAuthorizer"
   rest_api_id = aws_api_gateway_rest_api.museumAPI.id

@@ -43,7 +43,7 @@ Authenticated users can click the "**Delete**" button to delete an existing muse
    ![image](https://github.com/user-attachments/assets/47024fe2-7546-49f2-95d0-9a4aa5d7881b)
    * ```cd ServerlessDynamoDBApp/src/frontend``` and run the following aws cli command to upload the frontend to the specified S3 bucket:
      ```
-     aws s3 sync $(pwd) s3://{s3_bucket_name}
+     aws s3 sync . s3://{s3_bucket_name}
      ```
 <!-- 9. Currently, unfortunately I have to manually enable Cross-Origin Resource Sharing (CORS) in the AWS Console under API Gateway, will try to learn to configure it automatucally with Terraform as part of the future work:
     * Click "**Enable CORS**" button
