@@ -13,3 +13,7 @@ output "cognito_user_pool_id"{
 output "cognito_user_pool_client_id"{
     value = module.cognito.cognito_user_pool_client_output.id
 }
+
+output "cloudfront_domain_name"{
+    value = module.cloudfront.cloudfront_output.domain_name
+}

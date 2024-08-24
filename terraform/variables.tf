@@ -42,6 +42,12 @@ variable iam_policy_name{
     default = ""
 }
 
+variable api_gateway_stage_name{
+    type = string
+    description = "name of the API gateway stage name"
+    default = "test"
+}
+
 variable test_username{
     type = string
     description = "name of the cognito user name for testing"
@@ -52,4 +58,15 @@ variable test_password{
     type = string
     description = "name of the cognito user password for testing"
     default = "testuser"
+}
+
+variable root_domain_name{
+    type = string
+    description = "name of the registered domain for web hosting, e.g. example.com"
+    default = ""
+}
+variable sub_domain_name{
+    type = string
+    description = "name of the subject alternative name of the domain e.g. www.example.com"
+    default = ""
 }
